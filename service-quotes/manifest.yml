@@ -1,0 +1,11 @@
+---
+applications:
+- name: quotes
+  memory: 256M
+  instances: 1
+  host: quotes
+  path: ./target/quotes-1.0-SNAPSHOT.jar
+  env:
+    SPRING_PROFILES_DEFAULT: cloud
+    SVC_AUTH_NAME: quotes
+    SVC_AUTH_CODE: quotes

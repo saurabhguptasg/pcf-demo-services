@@ -1,0 +1,12 @@
+---
+applications:
+- name: claims
+  memory: 256M
+  instances: 1
+  host: claims
+  path: ./target/claims-1.0-SNAPSHOT.jar
+  env:
+    SPRING_PROFILES_DEFAULT: cloud
+    SVC_AUTH_NAME: claims
+    SVC_AUTH_CODE: claims
+
