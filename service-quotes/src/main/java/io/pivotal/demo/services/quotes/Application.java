@@ -12,7 +12,7 @@ import org.springframework.context.annotation.Configuration;
  *
  */
 @Configuration
-@ComponentScan
+@ComponentScan(basePackages = {"io.pivotal.demo.services"})
 @EnableAutoConfiguration
 public class Application {
     public static void main( String[] args ) {
@@ -51,4 +51,14 @@ public class Application {
         return catalogResponse;
     }
 
+  @Bean
+  public PlanSet getPlanSet(CatalogResponse catalogResponse) {
+    PlanSet planSet = new PlanSet();
+    for (CatalogService catalogService : catalogResponse.getServices()) {
+      for (CatalogServicePlan catalogServicePlan : catalogService.getPlans()) {
+        planSet.addPlan(catalogServicePlan.getId());
+      }
+    }
+    return planSet;
+  }
 }

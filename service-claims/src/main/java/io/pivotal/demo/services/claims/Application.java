@@ -15,7 +15,7 @@ import java.util.Map;
  *
  */
 @Configuration
-@ComponentScan
+@ComponentScan(basePackages = {"io.pivotal.demo.services"})
 @EnableAutoConfiguration
 public class Application  {
     public static void main( String[] args ) {

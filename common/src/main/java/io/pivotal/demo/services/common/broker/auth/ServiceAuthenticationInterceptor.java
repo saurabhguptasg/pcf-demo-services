@@ -32,7 +32,7 @@ public class ServiceAuthenticationInterceptor extends HandlerInterceptorAdapter 
 
   @Override
   public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) throws Exception {
-    String authHeader = request.getHeader("Authentication");
+    String authHeader = request.getHeader("Authorization");
     LOGGER.info(">> >> >> >> pre handling with auth header: " + authHeader);
     if(name == null && code == null) {
       return true;

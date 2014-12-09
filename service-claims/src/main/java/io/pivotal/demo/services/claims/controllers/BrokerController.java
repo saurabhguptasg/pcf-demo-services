@@ -123,7 +123,8 @@ public class BrokerController {
   @ResponseBody
   public ResponseEntity<Map<String,String>> unbind(@PathVariable("instance_id") String instance_id,
                                                    @PathVariable("binding_id") String binding_id,
-                                                   @RequestBody UnbindRequest unbindRequest) {
+                                                   @RequestParam("plan_id") String plain_id,
+                                                   @RequestParam("service_id")String service_id) {
 
     Binding currentBinding = bindingMap.remove(binding_id);
     if(currentBinding == null) {
@@ -135,7 +136,10 @@ public class BrokerController {
   @RequestMapping(value = "/service_instances/{instance_id}", method = RequestMethod.DELETE)
   @ResponseBody
   public ResponseEntity<Map<String,String>> deprovision(@PathVariable("instance_id") String instance_id,
-                                                        @RequestBody UnbindRequest unbindRequest) {
+                                                        @RequestParam("plan_id") String plain_id,
+                                                        @RequestParam("service_id")String service_id) {
+    LOGGER.info(">> deprovisioning instance id: " + instance_id);
+    LOGGER.info(">> deprovisioning params: plan_id["+plain_id+"], service_id["+service_id+"]");
 
     ServiceInstance serviceInstance = serviceInstanceMap.remove(instance_id);
     if(serviceInstance == null) {
